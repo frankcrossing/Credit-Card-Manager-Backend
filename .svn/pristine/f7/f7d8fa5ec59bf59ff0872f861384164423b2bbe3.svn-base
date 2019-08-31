@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.ManageAdminLogsMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.ManageAdminLogsDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="adminId" jdbcType="INTEGER" property="adminId" />
+    <result column="adminName" jdbcType="VARCHAR" property="adminName" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="adminUrl" jdbcType="VARCHAR" property="adminUrl" />
+    <result column="adminIp" jdbcType="VARCHAR" property="adminIp" />
+    <result column="addDate" jdbcType="TIMESTAMP" property="addDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jieandata.dal.model.ManageAdminLogsDo">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, adminId, adminName, title, adminUrl, adminIp, addDate
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from manage_admin_logs
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manage_admin_logs
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.ManageAdminLogsDo">
+    insert into manage_admin_logs (id, adminId, adminName, 
+      title, adminUrl, adminIp, 
+      addDate, content)
+    values (#{id,jdbcType=INTEGER}, #{adminId,jdbcType=INTEGER}, #{adminName,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{adminUrl,jdbcType=VARCHAR}, #{adminIp,jdbcType=VARCHAR}, 
+      #{addDate,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.ManageAdminLogsDo">
+    insert into manage_admin_logs
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="adminId != null">
+        adminId,
+      </if>
+      <if test="adminName != null">
+        adminName,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="adminUrl != null">
+        adminUrl,
+      </if>
+      <if test="adminIp != null">
+        adminIp,
+      </if>
+      <if test="addDate != null">
+        addDate,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="adminId != null">
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null">
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUrl != null">
+        #{adminUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="adminIp != null">
+        #{adminIp,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        #{addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.ManageAdminLogsDo">
+    update manage_admin_logs
+    <set>
+      <if test="adminId != null">
+        adminId = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminName != null">
+        adminName = #{adminName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="adminUrl != null">
+        adminUrl = #{adminUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="adminIp != null">
+        adminIp = #{adminIp,jdbcType=VARCHAR},
+      </if>
+      <if test="addDate != null">
+        addDate = #{addDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jieandata.dal.model.ManageAdminLogsDo">
+    update manage_admin_logs
+    set adminId = #{adminId,jdbcType=INTEGER},
+      adminName = #{adminName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      adminUrl = #{adminUrl,jdbcType=VARCHAR},
+      adminIp = #{adminIp,jdbcType=VARCHAR},
+      addDate = #{addDate,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.ManageAdminLogsDo">
+    update manage_admin_logs
+    set adminId = #{adminId,jdbcType=INTEGER},
+      adminName = #{adminName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      adminUrl = #{adminUrl,jdbcType=VARCHAR},
+      adminIp = #{adminIp,jdbcType=VARCHAR},
+      addDate = #{addDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

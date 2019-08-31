@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/uranussv.iml" filepath="$PROJECT_DIR$/uranussv.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uranussv-biz/uranussv-biz.iml" filepath="$PROJECT_DIR$/uranussv-biz/uranussv-biz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uranussv-dal/uranussv-dal.iml" filepath="$PROJECT_DIR$/uranussv-dal/uranussv-dal.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uranussv-facade/uranussv-facade.iml" filepath="$PROJECT_DIR$/uranussv-facade/uranussv-facade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uranussv-integration/uranussv-integration.iml" filepath="$PROJECT_DIR$/uranussv-integration/uranussv-integration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uranussv-service/uranussv-service.iml" filepath="$PROJECT_DIR$/uranussv-service/uranussv-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uranussv-utils/uranussv-utils.iml" filepath="$PROJECT_DIR$/uranussv-utils/uranussv-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uranussv-web/uranussv-web.iml" filepath="$PROJECT_DIR$/uranussv-web/uranussv-web.iml" />
+    </modules>
+  </component>
+</project>

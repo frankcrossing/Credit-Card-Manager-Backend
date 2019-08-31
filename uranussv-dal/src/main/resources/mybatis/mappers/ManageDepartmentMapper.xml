@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.ManageDepartmentMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.ManageDepartmentDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="departName" jdbcType="VARCHAR" property="departName" />
+    <result column="departLevel" jdbcType="INTEGER" property="departLevel" />
+    <result column="departParentId" jdbcType="INTEGER" property="departParentId" />
+    <result column="departSort" jdbcType="INTEGER" property="departSort" />
+    <result column="isModified" jdbcType="BIT" property="isModified" />
+    <result column="addTime" jdbcType="INTEGER" property="addTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, departName, departLevel, departParentId, departSort, isModified, addTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manage_department
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manage_department
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.ManageDepartmentDo">
+    insert into manage_department (id, departName, departLevel, 
+      departParentId, departSort, isModified, 
+      addTime)
+    values (#{id,jdbcType=INTEGER}, #{departName,jdbcType=VARCHAR}, #{departLevel,jdbcType=INTEGER}, 
+      #{departParentId,jdbcType=INTEGER}, #{departSort,jdbcType=INTEGER}, #{isModified,jdbcType=BIT}, 
+      #{addTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.ManageDepartmentDo">
+    insert into manage_department
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="departName != null">
+        departName,
+      </if>
+      <if test="departLevel != null">
+        departLevel,
+      </if>
+      <if test="departParentId != null">
+        departParentId,
+      </if>
+      <if test="departSort != null">
+        departSort,
+      </if>
+      <if test="isModified != null">
+        isModified,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="departName != null">
+        #{departName,jdbcType=VARCHAR},
+      </if>
+      <if test="departLevel != null">
+        #{departLevel,jdbcType=INTEGER},
+      </if>
+      <if test="departParentId != null">
+        #{departParentId,jdbcType=INTEGER},
+      </if>
+      <if test="departSort != null">
+        #{departSort,jdbcType=INTEGER},
+      </if>
+      <if test="isModified != null">
+        #{isModified,jdbcType=BIT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.ManageDepartmentDo">
+    update manage_department
+    <set>
+      <if test="departName != null">
+        departName = #{departName,jdbcType=VARCHAR},
+      </if>
+      <if test="departLevel != null">
+        departLevel = #{departLevel,jdbcType=INTEGER},
+      </if>
+      <if test="departParentId != null">
+        departParentId = #{departParentId,jdbcType=INTEGER},
+      </if>
+      <if test="departSort != null">
+        departSort = #{departSort,jdbcType=INTEGER},
+      </if>
+      <if test="isModified != null">
+        isModified = #{isModified,jdbcType=BIT},
+      </if>
+      <if test="addTime != null">
+        addTime = #{addTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.ManageDepartmentDo">
+    update manage_department
+    set departName = #{departName,jdbcType=VARCHAR},
+      departLevel = #{departLevel,jdbcType=INTEGER},
+      departParentId = #{departParentId,jdbcType=INTEGER},
+      departSort = #{departSort,jdbcType=INTEGER},
+      isModified = #{isModified,jdbcType=BIT},
+      addTime = #{addTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

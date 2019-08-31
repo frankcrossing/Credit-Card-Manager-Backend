@@ -1,0 +1,8 @@
+---
+singleServerConfig:
+  address: redis://47.100.45.99:6379
+  password: jhxyredis
+threads: 0
+nettyThreads: 0
+codec: !<org.redisson.codec.JsonJacksonCodec> {}
+useLinuxNativeEpoll: false

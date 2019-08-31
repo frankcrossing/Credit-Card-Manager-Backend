@@ -1,0 +1,95 @@
+package com.jieandata.biz.user.impl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.jieandata.biz.base.BaseManagerImpl;
+import com.jieandata.dal.dao.extdao.UserFeedbackExtMapper;
+import com.jieandata.dal.model.extdo.UserFeedbackExtDo;
+import com.jieandata.dal.dao.UserFeedbackMapper;
+import com.jieandata.jaguar.common.utils.convert.DateUtils;
+import com.jieandata.service.model.paging.PagingVO;
+import com.jieandata.service.model.user.UserFeedBackConditionVO;
+import com.jieandata.service.model.user.UserFeedBackVO;
+import com.jieandata.biz.user.UserFeedBackManager;
+import com.jieandata.utils.common.enums.RespCodeEnum;
+import com.jieandata.utils.exception.BusinessException;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Slf4j
+@Service
+public class UserFeedBackManagerImpl extends BaseManagerImpl implements UserFeedBackManager {
+
+    @Autowired
+    private UserFeedbackExtMapper userFeedbackExtMapper;
+    @Autowired
+    private UserFeedbackMapper userFeedbackMapper;
+
+    @Override
+    public int deleteUserFeedback(List<Integer> Id) throws BusinessException {
+        return userFeedbackExtMapper.deleteIdList(Id);
+    }
+
+    @Override
+    public PageInfo<UserFeedBackVO> getPagedUserFeedBackInfo(PagingVO<UserFeedBackConditionVO> paging) throws BusinessException {
+        if (isAnyNull(paging)) {
+            return null;
+        }
+        PageHelper.startPage(paging.getPageNum(), paging.getPageSize());
+
+        Map<String, Object> conditions = buildConditions(paging.getCondition());
+
+        List<UserFeedbackExtDo> userFeedbackExtDoList = userFeedbackExtMapper.getByConditions(conditions);
+
+        List<UserFeedBackVO> userFeedBackVOList = buildResults(userFeedbackExtDoList);
+
+        return new PageInfo<>(userFeedBackVOList, paging.getPageSize());
+    }
+
+    private Map<String, Object> buildConditions(UserFeedBackConditionVO condition){
+        String startDate = condition.getStartDate();
+        String endDate = condition.getEndDate();
+        if(StringUtils.isAllBlank(startDate, endDate)){
+            return new HashMap<>();
+        }
+
+        Map<String, Object> conditions = new HashMap<>();
+        if(!isNull(startDate)){
+            int beginCreateTime = DateUtils.getSecondTimestamp(DateUtils.parseMailDateDtPartString(startDate));
+            conditions.put("beginCreateTime", beginCreateTime);
+        }
+        if(!isNull(endDate)){
+            int endCreateTime = DateUtils.getSecondTimestamp(DateUtils.parseMailDateDtPartString(endDate));
+            conditions.put("endCreateTime", endCreateTime);
+        }
+
+        return conditions;
+    }
+
+    private List<UserFeedBackVO> buildResults(List<UserFeedbackExtDo> userFeedbackExtDoList){
+
+        if(isNull(userFeedbackExtDoList)){
+            return new ArrayList<>();
+        }
+
+        List<UserFeedBackVO> userFeedBackVOList = new ArrayList<>();
+
+        for(UserFeedbackExtDo userFeedbackExtDo : userFeedbackExtDoList){
+            Integer id = userFeedbackExtDo.getId();
+            Integer userId = userFeedbackExtDo.getUserId();
+            String mobile = String.valueOf(userFeedbackExtDo.getMobile());
+            String time = buildTime(userFeedbackExtDo.getCreateTime());
+            String memo = userFeedbackExtDo.getMemo();
+
+            UserFeedBackVO userFeedBackVO = new UserFeedBackVO(id, userId, mobile, time, memo);
+
+            userFeedBackVOList.add(userFeedBackVO);
+        }
+        return userFeedBackVOList;
+    }
+}

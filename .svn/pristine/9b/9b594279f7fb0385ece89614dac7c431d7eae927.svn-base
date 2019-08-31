@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.SystemConfigMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.SystemConfigDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="key" jdbcType="VARCHAR" property="key" />
+    <result column="addTime" jdbcType="INTEGER" property="addTime" />
+    <result column="updateTime" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jieandata.dal.model.SystemConfigDo">
+    <result column="value" jdbcType="LONGVARCHAR" property="value" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `key`, addTime, updateTime
+  </sql>
+  <sql id="Blob_Column_List">
+    `value`, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from system_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from system_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.SystemConfigDo">
+    insert into system_config (id, `key`, addTime,
+      updateTime, `value`, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER}, #{value,jdbcType=LONGVARCHAR}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.SystemConfigDo">
+    insert into system_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="key != null">
+        `key`,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="value != null">
+        `value`,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="key != null">
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.SystemConfigDo">
+    update system_config
+    <set>
+      <if test="key != null">
+        `key` = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        addTime = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        `value` = #{value,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jieandata.dal.model.SystemConfigDo">
+    update system_config
+    set key = #{key,jdbcType=VARCHAR},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER},
+      `value` = #{value,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.SystemConfigDo">
+    update system_config
+    set `key` = #{key,jdbcType=VARCHAR},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getValueByKey" parameterType="java.lang.String" resultType="java.lang.String">
+    select `value`
+    from system_config
+    <where>
+      <if test="key != null">
+        and `key` = #{key,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by id desc LIMIT 1
+  </select>
+</mapper>

@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.UserPlanDetailMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.UserPlanDetailDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="orderNo" jdbcType="VARCHAR" property="orderNo" />
+    <result column="planNo" jdbcType="VARCHAR" property="planNo" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="merchantsId" jdbcType="INTEGER" property="merchantsId" />
+    <result column="merchantsNo" jdbcType="VARCHAR" property="merchantsNo" />
+    <result column="planType" jdbcType="CHAR" property="planType" />
+    <result column="money" jdbcType="REAL" property="money" />
+    <result column="userRateFee" jdbcType="REAL" property="userRateFee" />
+    <result column="gkRateFee" jdbcType="REAL" property="gkRateFee" />
+    <result column="aisleRateFee" jdbcType="REAL" property="aisleRateFee" />
+    <result column="planShipId" jdbcType="INTEGER" property="planShipId" />
+    <result column="planDate" jdbcType="INTEGER" property="planDate" />
+    <result column="planStatus" jdbcType="CHAR" property="planStatus" />
+    <result column="aisleOrderNo" jdbcType="VARCHAR" property="aisleOrderNo" />
+    <result column="isDel" jdbcType="BIT" property="isDel" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jieandata.dal.model.UserPlanDetailDo">
+    <result column="logString" jdbcType="LONGVARCHAR" property="logString" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, orderNo, planNo, userId, merchantsId, merchantsNo, planType, money, userRateFee, 
+    gkRateFee, aisleRateFee, planShipId, planDate, planStatus, aisleOrderNo, isDel
+  </sql>
+  <sql id="Blob_Column_List">
+    logString
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_plan_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_plan_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.UserPlanDetailDo">
+    insert into user_plan_detail (id, orderNo, planNo, 
+      userId, merchantsId, merchantsNo, 
+      planType, money, userRateFee, 
+      gkRateFee, aisleRateFee, planShipId, 
+      planDate, planStatus, aisleOrderNo, 
+      isDel, logString)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{planNo,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{merchantsId,jdbcType=INTEGER}, #{merchantsNo,jdbcType=VARCHAR}, 
+      #{planType,jdbcType=CHAR}, #{money,jdbcType=REAL}, #{userRateFee,jdbcType=REAL}, 
+      #{gkRateFee,jdbcType=REAL}, #{aisleRateFee,jdbcType=REAL}, #{planShipId,jdbcType=INTEGER}, 
+      #{planDate,jdbcType=INTEGER}, #{planStatus,jdbcType=CHAR}, #{aisleOrderNo,jdbcType=VARCHAR}, 
+      #{isDel,jdbcType=BIT}, #{logString,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.UserPlanDetailDo">
+    insert into user_plan_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderNo != null">
+        orderNo,
+      </if>
+      <if test="planNo != null">
+        planNo,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="merchantsId != null">
+        merchantsId,
+      </if>
+      <if test="merchantsNo != null">
+        merchantsNo,
+      </if>
+      <if test="planType != null">
+        planType,
+      </if>
+      <if test="money != null">
+        money,
+      </if>
+      <if test="userRateFee != null">
+        userRateFee,
+      </if>
+      <if test="gkRateFee != null">
+        gkRateFee,
+      </if>
+      <if test="aisleRateFee != null">
+        aisleRateFee,
+      </if>
+      <if test="planShipId != null">
+        planShipId,
+      </if>
+      <if test="planDate != null">
+        planDate,
+      </if>
+      <if test="planStatus != null">
+        planStatus,
+      </if>
+      <if test="aisleOrderNo != null">
+        aisleOrderNo,
+      </if>
+      <if test="isDel != null">
+        isDel,
+      </if>
+      <if test="logString != null">
+        logString,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null">
+        #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantsId != null">
+        #{merchantsId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantsNo != null">
+        #{merchantsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planType != null">
+        #{planType,jdbcType=CHAR},
+      </if>
+      <if test="money != null">
+        #{money,jdbcType=REAL},
+      </if>
+      <if test="userRateFee != null">
+        #{userRateFee,jdbcType=REAL},
+      </if>
+      <if test="gkRateFee != null">
+        #{gkRateFee,jdbcType=REAL},
+      </if>
+      <if test="aisleRateFee != null">
+        #{aisleRateFee,jdbcType=REAL},
+      </if>
+      <if test="planShipId != null">
+        #{planShipId,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        #{planDate,jdbcType=INTEGER},
+      </if>
+      <if test="planStatus != null">
+        #{planStatus,jdbcType=CHAR},
+      </if>
+      <if test="aisleOrderNo != null">
+        #{aisleOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        #{isDel,jdbcType=BIT},
+      </if>
+      <if test="logString != null">
+        #{logString,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.UserPlanDetailDo">
+    update user_plan_detail
+    <set>
+      <if test="orderNo != null">
+        orderNo = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planNo != null">
+        planNo = #{planNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantsId != null">
+        merchantsId = #{merchantsId,jdbcType=INTEGER},
+      </if>
+      <if test="merchantsNo != null">
+        merchantsNo = #{merchantsNo,jdbcType=VARCHAR},
+      </if>
+      <if test="planType != null">
+        planType = #{planType,jdbcType=CHAR},
+      </if>
+      <if test="money != null">
+        money = #{money,jdbcType=REAL},
+      </if>
+      <if test="userRateFee != null">
+        userRateFee = #{userRateFee,jdbcType=REAL},
+      </if>
+      <if test="gkRateFee != null">
+        gkRateFee = #{gkRateFee,jdbcType=REAL},
+      </if>
+      <if test="aisleRateFee != null">
+        aisleRateFee = #{aisleRateFee,jdbcType=REAL},
+      </if>
+      <if test="planShipId != null">
+        planShipId = #{planShipId,jdbcType=INTEGER},
+      </if>
+      <if test="planDate != null">
+        planDate = #{planDate,jdbcType=INTEGER},
+      </if>
+      <if test="planStatus != null">
+        planStatus = #{planStatus,jdbcType=CHAR},
+      </if>
+      <if test="aisleOrderNo != null">
+        aisleOrderNo = #{aisleOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="isDel != null">
+        isDel = #{isDel,jdbcType=BIT},
+      </if>
+      <if test="logString != null">
+        logString = #{logString,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jieandata.dal.model.UserPlanDetailDo">
+    update user_plan_detail
+    set orderNo = #{orderNo,jdbcType=VARCHAR},
+      planNo = #{planNo,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=INTEGER},
+      merchantsId = #{merchantsId,jdbcType=INTEGER},
+      merchantsNo = #{merchantsNo,jdbcType=VARCHAR},
+      planType = #{planType,jdbcType=CHAR},
+      money = #{money,jdbcType=REAL},
+      userRateFee = #{userRateFee,jdbcType=REAL},
+      gkRateFee = #{gkRateFee,jdbcType=REAL},
+      aisleRateFee = #{aisleRateFee,jdbcType=REAL},
+      planShipId = #{planShipId,jdbcType=INTEGER},
+      planDate = #{planDate,jdbcType=INTEGER},
+      planStatus = #{planStatus,jdbcType=CHAR},
+      aisleOrderNo = #{aisleOrderNo,jdbcType=VARCHAR},
+      isDel = #{isDel,jdbcType=BIT},
+      logString = #{logString,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.UserPlanDetailDo">
+    update user_plan_detail
+    set orderNo = #{orderNo,jdbcType=VARCHAR},
+      planNo = #{planNo,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=INTEGER},
+      merchantsId = #{merchantsId,jdbcType=INTEGER},
+      merchantsNo = #{merchantsNo,jdbcType=VARCHAR},
+      planType = #{planType,jdbcType=CHAR},
+      money = #{money,jdbcType=REAL},
+      userRateFee = #{userRateFee,jdbcType=REAL},
+      gkRateFee = #{gkRateFee,jdbcType=REAL},
+      aisleRateFee = #{aisleRateFee,jdbcType=REAL},
+      planShipId = #{planShipId,jdbcType=INTEGER},
+      planDate = #{planDate,jdbcType=INTEGER},
+      planStatus = #{planStatus,jdbcType=CHAR},
+      aisleOrderNo = #{aisleOrderNo,jdbcType=VARCHAR},
+      isDel = #{isDel,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getByConditions" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_plan_detail d
+    <where>
+      <if test="planNo!=null">
+        and d.planNo = #{planNo,jdbcType=VARCHAR}
+      </if>
+      <if test="userIds!=null">
+        and d.userId in
+        <foreach item="item" index="index" collection="userIds"
+                 open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+    order by id asc
+  </select>
+</mapper>

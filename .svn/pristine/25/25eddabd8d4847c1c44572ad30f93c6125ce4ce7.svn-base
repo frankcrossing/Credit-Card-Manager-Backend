@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.UserFlagInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.UserFlagInfoDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="intefaceType" jdbcType="VARCHAR" property="intefaceType" />
+    <result column="bankName" jdbcType="VARCHAR" property="bankName" />
+    <result column="cardType" jdbcType="CHAR" property="cardType" />
+    <result column="bankNo" jdbcType="VARCHAR" property="bankNo" />
+    <result column="cardBin" jdbcType="VARCHAR" property="cardBin" />
+    <result column="bankMd5Flag" jdbcType="VARCHAR" property="bankMd5Flag" />
+    <result column="bankFlag" jdbcType="VARCHAR" property="bankFlag" />
+    <result column="isDefault" jdbcType="BIT" property="isDefault" />
+    <result column="isUnbundled" jdbcType="BIT" property="isUnbundled" />
+    <result column="userMobile" jdbcType="VARCHAR" property="userMobile" />
+    <result column="bankMobile" jdbcType="VARCHAR" property="bankMobile" />
+    <result column="bindStat" jdbcType="CHAR" property="bindStat" />
+    <result column="addTime" jdbcType="INTEGER" property="addTime" />
+    <result column="updateTime" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userId, intefaceType, bankName, cardType, bankNo, cardBin, bankMd5Flag, bankFlag, 
+    isDefault, isUnbundled, userMobile, bankMobile, bindStat, addTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_flag_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_flag_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.UserFlagInfoDo">
+    insert into user_flag_info (id, userId, intefaceType, 
+      bankName, cardType, bankNo, 
+      cardBin, bankMd5Flag, bankFlag, 
+      isDefault, isUnbundled, userMobile, 
+      bankMobile, bindStat, addTime, 
+      updateTime)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{intefaceType,jdbcType=VARCHAR}, 
+      #{bankName,jdbcType=VARCHAR}, #{cardType,jdbcType=CHAR}, #{bankNo,jdbcType=VARCHAR}, 
+      #{cardBin,jdbcType=VARCHAR}, #{bankMd5Flag,jdbcType=VARCHAR}, #{bankFlag,jdbcType=VARCHAR}, 
+      #{isDefault,jdbcType=BIT}, #{isUnbundled,jdbcType=BIT}, #{userMobile,jdbcType=VARCHAR}, 
+      #{bankMobile,jdbcType=VARCHAR}, #{bindStat,jdbcType=CHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.UserFlagInfoDo">
+    insert into user_flag_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="intefaceType != null">
+        intefaceType,
+      </if>
+      <if test="bankName != null">
+        bankName,
+      </if>
+      <if test="cardType != null">
+        cardType,
+      </if>
+      <if test="bankNo != null">
+        bankNo,
+      </if>
+      <if test="cardBin != null">
+        cardBin,
+      </if>
+      <if test="bankMd5Flag != null">
+        bankMd5Flag,
+      </if>
+      <if test="bankFlag != null">
+        bankFlag,
+      </if>
+      <if test="isDefault != null">
+        isDefault,
+      </if>
+      <if test="isUnbundled != null">
+        isUnbundled,
+      </if>
+      <if test="userMobile != null">
+        userMobile,
+      </if>
+      <if test="bankMobile != null">
+        bankMobile,
+      </if>
+      <if test="bindStat != null">
+        bindStat,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="intefaceType != null">
+        #{intefaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        #{cardType,jdbcType=CHAR},
+      </if>
+      <if test="bankNo != null">
+        #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardBin != null">
+        #{cardBin,jdbcType=VARCHAR},
+      </if>
+      <if test="bankMd5Flag != null">
+        #{bankMd5Flag,jdbcType=VARCHAR},
+      </if>
+      <if test="bankFlag != null">
+        #{bankFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="isUnbundled != null">
+        #{isUnbundled,jdbcType=BIT},
+      </if>
+      <if test="userMobile != null">
+        #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bankMobile != null">
+        #{bankMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bindStat != null">
+        #{bindStat,jdbcType=CHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.UserFlagInfoDo">
+    update user_flag_info
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="intefaceType != null">
+        intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bankName = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null">
+        cardType = #{cardType,jdbcType=CHAR},
+      </if>
+      <if test="bankNo != null">
+        bankNo = #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardBin != null">
+        cardBin = #{cardBin,jdbcType=VARCHAR},
+      </if>
+      <if test="bankMd5Flag != null">
+        bankMd5Flag = #{bankMd5Flag,jdbcType=VARCHAR},
+      </if>
+      <if test="bankFlag != null">
+        bankFlag = #{bankFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null">
+        isDefault = #{isDefault,jdbcType=BIT},
+      </if>
+      <if test="isUnbundled != null">
+        isUnbundled = #{isUnbundled,jdbcType=BIT},
+      </if>
+      <if test="userMobile != null">
+        userMobile = #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bankMobile != null">
+        bankMobile = #{bankMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="bindStat != null">
+        bindStat = #{bindStat,jdbcType=CHAR},
+      </if>
+      <if test="addTime != null">
+        addTime = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.UserFlagInfoDo">
+    update user_flag_info
+    set userId = #{userId,jdbcType=INTEGER},
+      intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      bankName = #{bankName,jdbcType=VARCHAR},
+      cardType = #{cardType,jdbcType=CHAR},
+      bankNo = #{bankNo,jdbcType=VARCHAR},
+      cardBin = #{cardBin,jdbcType=VARCHAR},
+      bankMd5Flag = #{bankMd5Flag,jdbcType=VARCHAR},
+      bankFlag = #{bankFlag,jdbcType=VARCHAR},
+      isDefault = #{isDefault,jdbcType=BIT},
+      isUnbundled = #{isUnbundled,jdbcType=BIT},
+      userMobile = #{userMobile,jdbcType=VARCHAR},
+      bankMobile = #{bankMobile,jdbcType=VARCHAR},
+      bindStat = #{bindStat,jdbcType=CHAR},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getByConditions" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_flag_info d
+    <where>
+      <if test="userId!=null">
+        and d.userId = #{userId,jdbcType=INTEGER}
+      </if>
+      <if test="userIds!=null">
+        and d.userId in
+        <foreach item="item" index="index" collection="userIds"
+                 open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+    order by id desc
+  </select>
+</mapper>

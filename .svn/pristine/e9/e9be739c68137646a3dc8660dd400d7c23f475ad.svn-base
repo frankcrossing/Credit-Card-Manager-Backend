@@ -1,0 +1,13 @@
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('1','CJPAY','BOC','中国银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('2','CJPAY','ABC','农业银行','2000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('3','CJPAY','ICBC','工商银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('4','CJPAY','CCB','建设银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('5','CJPAY','COMM','交通银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('6','CJPAY','CIB','兴业银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('7','CJPAY','CITIC','中信银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('8','CJPAY','SZPAB','平安银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('9','CJPAY','CEB','光大银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('10','CJPAY','GDB','广发银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('11','CJPAY','SPDB','浦发银行','20000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('12','CJPAY','PSBC','邮政储蓄银行','1000.00','50000.00');
+insert into `allow_bank_info` (`id`, `payType`, `bankCode`, `bankName`, `singleLimitAmount`, `dayLimitAmount`) values('13','CJPAY','CMB','招商银行','3000.00','50000.00');

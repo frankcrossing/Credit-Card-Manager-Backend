@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.UserFeedbackMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.UserFeedbackDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="createTime" jdbcType="INTEGER" property="createTime" />
+    <result column="inteface_type" jdbcType="VARCHAR" property="inteface_type" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jieandata.dal.model.UserFeedbackDo">
+    <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userId, createTime, inteface_type
+  </sql>
+  <sql id="Blob_Column_List">
+    memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_feedback
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_feedback
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.UserFeedbackDo">
+    insert into user_feedback (id, userId, createTime, 
+      inteface_type, memo)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=INTEGER}, 
+      #{inteface_type,jdbcType=VARCHAR}, #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.UserFeedbackDo">
+    insert into user_feedback
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="createTime != null">
+        createTime,
+      </if>
+      <if test="inteface_type != null">
+        inteface_type,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="inteface_type != null">
+        #{inteface_type,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.UserFeedbackDo">
+    update user_feedback
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        createTime = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="inteface_type != null">
+        inteface_type = #{inteface_type,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jieandata.dal.model.UserFeedbackDo">
+    update user_feedback
+    set userId = #{userId,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=INTEGER},
+      inteface_type = #{inteface_type,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.UserFeedbackDo">
+    update user_feedback
+    set userId = #{userId,jdbcType=INTEGER},
+      createTime = #{createTime,jdbcType=INTEGER},
+      inteface_type = #{inteface_type,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

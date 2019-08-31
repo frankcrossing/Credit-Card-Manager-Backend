@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="uranussv-integration" />
+        <module name="uranussv-dal" />
+        <module name="uranussv-service" />
+        <module name="uranussv-web" />
+        <module name="uranussv-utils" />
+        <module name="uranussv-facade" />
+        <module name="uranussv-biz" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="uranussv" target="1.8" />
+      <module name="uranussv-biz" target="1.8" />
+      <module name="uranussv-dal" target="1.8" />
+      <module name="uranussv-facade" target="1.8" />
+      <module name="uranussv-integration" target="1.8" />
+      <module name="uranussv-service" target="1.8" />
+      <module name="uranussv-utils" target="1.8" />
+      <module name="uranussv-web" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="uranussv-biz" options="-parameters" />
+      <module name="uranussv-dal" options="-parameters" />
+      <module name="uranussv-facade" options="-parameters" />
+      <module name="uranussv-integration" options="-parameters" />
+      <module name="uranussv-service" options="-parameters" />
+      <module name="uranussv-utils" options="-parameters" />
+      <module name="uranussv-web" options="-parameters" />
+    </option>
+  </component>
+</project>

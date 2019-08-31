@@ -1,0 +1,8 @@
+---
+singleServerConfig:
+  address: redis://r-uf663a502ae311e4.redis.rds.aliyuncs.com:6379
+  password: Jhxyredis2018
+threads: 0
+nettyThreads: 0
+codec: !<org.redisson.codec.JsonJacksonCodec> {}
+useLinuxNativeEpoll: false

@@ -1,0 +1,113 @@
+package com.jieandata.biz.user.impl;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.jieandata.biz.base.BaseManagerImpl;
+import com.jieandata.dal.dao.extdao.UserFeedbackDtoMapper;
+import com.jieandata.dal.model.extdo.UserFeedbackDto;
+import com.jieandata.dal.dao.UserFeedbackMapper;
+import com.jieandata.service.model.paging.PagingVO;
+import com.jieandata.service.model.user.UserFeedBackVO;
+import com.jieandata.biz.user.UserFeedBackManager;
+import com.jieandata.utils.common.enums.RespCodeEnum;
+import com.jieandata.utils.exception.BusinessException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import java.util.ArrayList;
+import java.util.List;
+
+@Slf4j
+@Service
+public class UserFeedBackManagerImpl extends BaseManagerImpl implements UserFeedBackManager {
+
+    @Autowired
+    private UserFeedbackDtoMapper userFeedbackDtoMapper;
+    @Autowired
+    private UserFeedbackMapper userFeedbackMapper;
+
+    @Override
+    public void getUserDeleteData(Integer Id) throws BusinessException {
+        if (isNull(Id)){
+            throw new BusinessException(RespCodeEnum.PARAM_ERROR);
+        }
+        if (isAnyNull(userFeedbackMapper.selectByPrimaryKey(Id))) {
+           throw new BusinessException(RespCodeEnum.PARAM_ERROR);
+        }
+        userFeedbackMapper.deleteByPrimaryKey(Id);
+    }
+
+    @Override
+    public PageInfo<UserFeedBackVO> getPagedUserFeedBackInfo(PagingVO paging) throws BusinessException {
+        if (isAnyNull(paging)) {
+            return null;
+        }
+        PageHelper.startPage(paging.getPageNum(), paging.getPageSize());
+
+        List<UserFeedbackDto> userFeedbackDtoList = userFeedbackDtoMapper.getResultList();
+
+        List<UserFeedBackVO> userFeedBackVOList = buildResults(userFeedbackDtoList);
+
+        return new PageInfo<>(userFeedBackVOList, paging.getPageSize());
+    }
+
+    public PageInfo<UserFeedBackVO> getPagedDatedUserFeedBackInfo(PagingVO paging, String start, String end) throws BusinessException {
+        if (isAnyNull(paging)) {
+            throw new BusinessException(RespCodeEnum.PARAM_ERROR);
+        }
+        PageHelper.startPage(paging.getPageNum(), paging.getPageSize());
+
+        List<UserFeedbackDto> userFeedbackDtoList = userFeedbackDtoMapper.getResultList();
+        List<UserFeedbackDto> userFeedbackDtoTemplist = userFeedbackDtoMapper.getResultList();
+
+        int totalCounter = 0;
+        for (UserFeedbackDto userFeedbackDto: userFeedbackDtoTemplist) {
+            if (buildTime(userFeedbackDto.getCreateTime()).compareTo(start) >= 0
+                 && buildTime(userFeedbackDto.getCreateTime()).compareTo(end) <= 0) {
+                totalCounter ++;
+            }
+        }
+        List<UserFeedBackVO> userFeedBackVOTempList  = buildResults(userFeedbackDtoList);
+        List<UserFeedBackVO> userFeedBackVOList  = new ArrayList<>();
+
+        for (UserFeedBackVO userFeedBackVO: userFeedBackVOTempList) {
+            if (userFeedBackVO.getCreateTime().compareTo(start) >= 0
+                    && userFeedBackVO.getCreateTime().compareTo(end) <= 0) {
+                userFeedBackVOList.add(userFeedBackVO);
+            }
+        }
+
+        for (UserFeedBackVO userFeedBackVO: userFeedBackVOList) {
+            userFeedBackVO.setCounter(totalCounter);
+        }
+
+        return new PageInfo<>(userFeedBackVOList, paging.getPageSize());
+    }
+
+
+    private List<UserFeedBackVO> buildResults(List<UserFeedbackDto> userFeedbackDtoList){
+
+        if(isNull(userFeedbackDtoList)){
+            return null;
+        }
+
+        List<UserFeedBackVO> userFeedBackVOList = new ArrayList<>();
+
+        for(UserFeedbackDto userFeedbackDto : userFeedbackDtoList){
+            Integer id = userFeedbackDto.getId();
+            Integer userId = userFeedbackDto.getUserId();
+            String mobile = String.valueOf(userFeedbackDto.getMobile());
+            String time = buildTime(userFeedbackDto.getCreateTime());
+            String memo = userFeedbackDto.getMemo();
+            Integer counter = userFeedbackDtoMapper.getResultList().size();
+
+            UserFeedBackVO userFeedBackVO = new UserFeedBackVO(id, counter, userId,
+                            mobile,
+                            time,
+                            memo
+                            );
+
+            userFeedBackVOList.add(userFeedBackVO);
+        }
+        return userFeedBackVOList;
+    }
+}

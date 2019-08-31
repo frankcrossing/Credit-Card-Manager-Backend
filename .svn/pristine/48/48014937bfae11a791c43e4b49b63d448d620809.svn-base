@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.UserFlagRealMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.UserFlagRealDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="intefaceType" jdbcType="VARCHAR" property="intefaceType" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="realType" jdbcType="INTEGER" property="realType" />
+    <result column="addTime" jdbcType="INTEGER" property="addTime" />
+    <result column="updateTime" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jieandata.dal.model.UserFlagRealDo">
+    <result column="userFlag" jdbcType="LONGVARCHAR" property="userFlag" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, intefaceType, userId, realType, addTime, updateTime
+  </sql>
+  <sql id="Blob_Column_List">
+    userFlag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_flag_real
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_flag_real
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.UserFlagRealDo">
+    insert into user_flag_real (id, intefaceType, userId, 
+      realType, addTime, updateTime, 
+      userFlag)
+    values (#{id,jdbcType=INTEGER}, #{intefaceType,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{realType,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER}, 
+      #{userFlag,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.UserFlagRealDo">
+    insert into user_flag_real
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="intefaceType != null">
+        intefaceType,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="realType != null">
+        realType,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="userFlag != null">
+        userFlag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="intefaceType != null">
+        #{intefaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="realType != null">
+        #{realType,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="userFlag != null">
+        #{userFlag,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.UserFlagRealDo">
+    update user_flag_real
+    <set>
+      <if test="intefaceType != null">
+        intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="realType != null">
+        realType = #{realType,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        addTime = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="userFlag != null">
+        userFlag = #{userFlag,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jieandata.dal.model.UserFlagRealDo">
+    update user_flag_real
+    set intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=INTEGER},
+      realType = #{realType,jdbcType=INTEGER},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER},
+      userFlag = #{userFlag,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.UserFlagRealDo">
+    update user_flag_real
+    set intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      userId = #{userId,jdbcType=INTEGER},
+      realType = #{realType,jdbcType=INTEGER},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getOneByUserId" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_flag_real
+    where
+    id in
+    (select max(id) from user_flag_real where userId = #{userId,jdbcType=INTEGER})
+  </select>
+
+  <select id="getByConditions" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_flag_real d
+    <where>
+      <if test="userIds!=null">
+        and d.userId in
+        <foreach item="item" index="index" collection="userIds"
+                 open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+    order by id desc
+  </select>
+</mapper>

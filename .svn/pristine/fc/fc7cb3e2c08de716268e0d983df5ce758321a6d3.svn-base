@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.UserFeedbackDtoMapper">
+    <resultMap id="BaseResultMap" type="com.jieandata.dal.model.UserFeedbackDto">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column = "userId" jdbcType = "INTEGER" property = "userId" />
+        <result column="mobile" jdbcType="BIGINT" property="mobile" />
+        <result column = "createTime" jdbcType = "BIGINT" property = "createTime" />
+        <result column="memo" jdbcType="VARCHAR" property="memo" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, userId, mobile, createTime, memo
+    </sql>
+    <select id="getResultList"  resultMap="BaseResultMap">
+        select user_feedback.userId, user_base_info.mobile,
+        user_feedback.createTime, user_feedback.memo
+        FROM user_feedback, user_base_info
+        Where user_feedback.userId = user_base_info.id
+    </select>
+</mapper>

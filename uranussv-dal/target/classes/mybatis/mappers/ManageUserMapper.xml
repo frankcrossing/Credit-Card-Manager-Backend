@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.ManageUserMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.ManageUserDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userName" jdbcType="VARCHAR" property="userName" />
+    <result column="mobile" jdbcType="BIGINT" property="mobile" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="pwdSalt" jdbcType="VARCHAR" property="pwdSalt" />
+    <result column="userStatus" jdbcType="CHAR" property="userStatus" />
+    <result column="agentId" jdbcType="VARCHAR" property="agentId" />
+    <result column="addTime" jdbcType="INTEGER" property="addTime" />
+    <result column="updateTime" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userName, mobile, email, password, pwdSalt, userStatus, agentId, addTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manage_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manage_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.ManageUserDo">
+    insert into manage_user (id, userName, mobile, 
+      email, password, pwdSalt, 
+      userStatus, agentId, addTime, 
+      updateTime)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{mobile,jdbcType=BIGINT}, 
+      #{email,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{pwdSalt,jdbcType=VARCHAR}, 
+      #{userStatus,jdbcType=CHAR}, #{agentId,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.ManageUserDo">
+    insert into manage_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userName != null">
+        userName,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="pwdSalt != null">
+        pwdSalt,
+      </if>
+      <if test="userStatus != null">
+        userStatus,
+      </if>
+      <if test="agentId != null">
+        agentId,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdSalt != null">
+        #{pwdSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="agentId != null">
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.ManageUserDo">
+    update manage_user
+    <set>
+      <if test="userName != null">
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=BIGINT},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="pwdSalt != null">
+        pwdSalt = #{pwdSalt,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        userStatus = #{userStatus,jdbcType=CHAR},
+      </if>
+      <if test="agentId != null">
+        agentId = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        addTime = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.ManageUserDo">
+    update manage_user
+    set userName = #{userName,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=BIGINT},
+      email = #{email,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      pwdSalt = #{pwdSalt,jdbcType=VARCHAR},
+      userStatus = #{userStatus,jdbcType=CHAR},
+      agentId = #{agentId,jdbcType=VARCHAR},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

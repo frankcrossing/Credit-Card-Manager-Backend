@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.ManageGroupMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.ManageGroupDo">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="departId" jdbcType="INTEGER" property="departId" />
+    <result column="groupName" jdbcType="VARCHAR" property="groupName" />
+    <result column="authIds" jdbcType="VARCHAR" property="authIds" />
+    <result column="idDefault" jdbcType="INTEGER" property="idDefault" />
+    <result column="addTime" jdbcType="INTEGER" property="addTime" />
+    <result column="updateTime" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.jieandata.dal.model.ManageGroupDo">
+    insert into manage_group (id, departId, groupName, 
+      authIds, idDefault, addTime, 
+      updateTime)
+    values (#{id,jdbcType=INTEGER}, #{departId,jdbcType=INTEGER}, #{groupName,jdbcType=VARCHAR}, 
+      #{authIds,jdbcType=VARCHAR}, #{idDefault,jdbcType=INTEGER}, #{addTime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.ManageGroupDo">
+    insert into manage_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="departId != null">
+        departId,
+      </if>
+      <if test="groupName != null">
+        groupName,
+      </if>
+      <if test="authIds != null">
+        authIds,
+      </if>
+      <if test="idDefault != null">
+        idDefault,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="departId != null">
+        #{departId,jdbcType=INTEGER},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="authIds != null">
+        #{authIds,jdbcType=VARCHAR},
+      </if>
+      <if test="idDefault != null">
+        #{idDefault,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="mysqlTables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://10.6.8.228:3306/saturn?serverTimezone=UTC"
+                        userId="saturnuser"
+                        password="123456">
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="com.jieandata.dal.model"
+                            targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources/mybatis"/>
+
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.jieandata.dal.dao"
+                             targetProject="./src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+		<!--<table tableName="plan_info" domainObjectName="PlanInfoDo" mapperName="PlanInfoMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_base_info" domainObjectName="UserBaseInfoDo" mapperName="UserBaseInfoMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_device_info" domainObjectName="UserDeviceInfoDo" mapperName="UserDeviceInfoMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_feedback" domainObjectName="UserFeedbackDo" mapperName="UserFeedbackMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_flag_info" domainObjectName="UserFlagInfoDo" mapperName="UserFlagInfoMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_flag_real" domainObjectName="UserFlagRealDo" mapperName="UserFlagRealMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_level_info" domainObjectName="UserLevelInfoDo" mapperName="UserLevelInfoMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_login_log" domainObjectName="UserLoginLogDo" mapperName="UserLoginLogMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_plan_detail" domainObjectName="UserPlanDetailDo" mapperName="UserPlanDetailMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="user_token_info" domainObjectName="UserTokenInfoDo" mapperName="UserTokenInfoMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="agent_info" domainObjectName="AgentInfoDo" mapperName="AgentInfoMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="manage_admin_logs" domainObjectName="ManageAdminLogsDo" mapperName="ManageAdminLogsMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="manage_department" domainObjectName="ManageDepartmentDo" mapperName="ManageDepartmentMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="manage_distri_admin" domainObjectName="ManageDistriAdminDo" mapperName="ManageDistriAdminMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="manage_menu" domainObjectName="ManageMenuDo" mapperName="ManageMenuMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="manage_menu_power" domainObjectName="ManageMenuPowerDo" mapperName="ManageMenuPowerMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="manage_user" domainObjectName="ManageUserDo" mapperName="ManageUserMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="member_level_info" domainObjectName="MemberLevelInfoDo" mapperName="MemberLevelInfoMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="manage_group" domainObjectName="ManageGroupDo" mapperName="ManageGroupMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>
+		<table tableName="manage_user_group" domainObjectName="ManageUserGroupDo" mapperName="ManageUserGroupMapper"
+			   enableCountByExample="false"
+			   enableUpdateByExample="false"
+			   enableDeleteByExample="false"
+			   enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="true"/>
+		</table>-->
+        <table tableName="system_config" domainObjectName="SystemConfigDo" mapperName="SystemConfigMapper"
+               enableCountByExample="false"
+               enableUpdateByExample="false"
+               enableDeleteByExample="false"
+               enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <property name="useActualColumnNames" value="true"/>
+        </table>
+    </context>
+</generatorConfiguration>

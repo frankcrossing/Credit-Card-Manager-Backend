@@ -1,0 +1,13 @@
+com\jieandata\biz\user\impl\UserFeedBackManagerImpl.class
+com\jieandata\biz\base\BaseManagerImpl.class
+com\jieandata\biz\common\impl\CommonManagerImpl.class
+com\jieandata\biz\manageuser\impl\ManageUserManagerImpl.class
+com\jieandata\biz\agent\impl\AgentManagerImpl.class
+com\jieandata\biz\plan\impl\PlanManagerImpl.class
+com\jieandata\biz\plan\PlanManager.class
+com\jieandata\biz\common\CommonManager.class
+com\jieandata\biz\user\impl\UserManagerImpl.class
+com\jieandata\biz\agent\AgentManager.class
+com\jieandata\biz\manageuser\ManageUserManager.class
+com\jieandata\biz\user\UserFeedBackManager.class
+com\jieandata\biz\user\UserManager.class

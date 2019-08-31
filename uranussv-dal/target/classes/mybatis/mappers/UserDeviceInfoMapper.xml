@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.UserDeviceInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.UserDeviceInfoDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="intefaceType" jdbcType="VARCHAR" property="intefaceType" />
+    <result column="deviceType" jdbcType="CHAR" property="deviceType" />
+    <result column="deviceNo" jdbcType="VARCHAR" property="deviceNo" />
+    <result column="phoneType" jdbcType="VARCHAR" property="phoneType" />
+    <result column="systemType" jdbcType="VARCHAR" property="systemType" />
+    <result column="phoneStorage" jdbcType="DECIMAL" property="phoneStorage" />
+    <result column="phoneDisk" jdbcType="DECIMAL" property="phoneDisk" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="clientMac" jdbcType="VARCHAR" property="clientMac" />
+    <result column="addTime" jdbcType="INTEGER" property="addTime" />
+    <result column="updateTime" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.jieandata.dal.model.UserDeviceInfoDo">
+    <result column="userAgent" jdbcType="LONGVARCHAR" property="userAgent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userId, intefaceType, deviceType, deviceNo, phoneType, systemType, phoneStorage, 
+    phoneDisk, ip, clientMac, addTime, updateTime
+  </sql>
+  <sql id="Blob_Column_List">
+    userAgent
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from user_device_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_device_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.UserDeviceInfoDo">
+    insert into user_device_info (id, userId, intefaceType, 
+      deviceType, deviceNo, phoneType, 
+      systemType, phoneStorage, phoneDisk, 
+      ip, clientMac, addTime, 
+      updateTime, userAgent)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{intefaceType,jdbcType=VARCHAR}, 
+      #{deviceType,jdbcType=CHAR}, #{deviceNo,jdbcType=VARCHAR}, #{phoneType,jdbcType=VARCHAR}, 
+      #{systemType,jdbcType=VARCHAR}, #{phoneStorage,jdbcType=DECIMAL}, #{phoneDisk,jdbcType=DECIMAL}, 
+      #{ip,jdbcType=VARCHAR}, #{clientMac,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER}, #{userAgent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.UserDeviceInfoDo">
+    insert into user_device_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="intefaceType != null">
+        intefaceType,
+      </if>
+      <if test="deviceType != null">
+        deviceType,
+      </if>
+      <if test="deviceNo != null">
+        deviceNo,
+      </if>
+      <if test="phoneType != null">
+        phoneType,
+      </if>
+      <if test="systemType != null">
+        systemType,
+      </if>
+      <if test="phoneStorage != null">
+        phoneStorage,
+      </if>
+      <if test="phoneDisk != null">
+        phoneDisk,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="clientMac != null">
+        clientMac,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+      <if test="userAgent != null">
+        userAgent,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="intefaceType != null">
+        #{intefaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=CHAR},
+      </if>
+      <if test="deviceNo != null">
+        #{deviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null">
+        #{phoneType,jdbcType=VARCHAR},
+      </if>
+      <if test="systemType != null">
+        #{systemType,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStorage != null">
+        #{phoneStorage,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneDisk != null">
+        #{phoneDisk,jdbcType=DECIMAL},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMac != null">
+        #{clientMac,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="userAgent != null">
+        #{userAgent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.UserDeviceInfoDo">
+    update user_device_info
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="intefaceType != null">
+        intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        deviceType = #{deviceType,jdbcType=CHAR},
+      </if>
+      <if test="deviceNo != null">
+        deviceNo = #{deviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneType != null">
+        phoneType = #{phoneType,jdbcType=VARCHAR},
+      </if>
+      <if test="systemType != null">
+        systemType = #{systemType,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneStorage != null">
+        phoneStorage = #{phoneStorage,jdbcType=DECIMAL},
+      </if>
+      <if test="phoneDisk != null">
+        phoneDisk = #{phoneDisk,jdbcType=DECIMAL},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="clientMac != null">
+        clientMac = #{clientMac,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        addTime = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="userAgent != null">
+        userAgent = #{userAgent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.jieandata.dal.model.UserDeviceInfoDo">
+    update user_device_info
+    set userId = #{userId,jdbcType=INTEGER},
+      intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      deviceType = #{deviceType,jdbcType=CHAR},
+      deviceNo = #{deviceNo,jdbcType=VARCHAR},
+      phoneType = #{phoneType,jdbcType=VARCHAR},
+      systemType = #{systemType,jdbcType=VARCHAR},
+      phoneStorage = #{phoneStorage,jdbcType=DECIMAL},
+      phoneDisk = #{phoneDisk,jdbcType=DECIMAL},
+      ip = #{ip,jdbcType=VARCHAR},
+      clientMac = #{clientMac,jdbcType=VARCHAR},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER},
+      userAgent = #{userAgent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.UserDeviceInfoDo">
+    update user_device_info
+    set userId = #{userId,jdbcType=INTEGER},
+      intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      deviceType = #{deviceType,jdbcType=CHAR},
+      deviceNo = #{deviceNo,jdbcType=VARCHAR},
+      phoneType = #{phoneType,jdbcType=VARCHAR},
+      systemType = #{systemType,jdbcType=VARCHAR},
+      phoneStorage = #{phoneStorage,jdbcType=DECIMAL},
+      phoneDisk = #{phoneDisk,jdbcType=DECIMAL},
+      ip = #{ip,jdbcType=VARCHAR},
+      clientMac = #{clientMac,jdbcType=VARCHAR},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getOneByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_device_info
+    where
+    id in
+    (select max(id) from user_device_info where userId = #{userId,jdbcType=INTEGER})
+  </select>
+</mapper>

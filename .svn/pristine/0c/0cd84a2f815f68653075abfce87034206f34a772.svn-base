@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jieandata.dal.dao.UserTokenInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jieandata.dal.model.UserTokenInfoDo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userId" jdbcType="INTEGER" property="userId" />
+    <result column="intefaceType" jdbcType="VARCHAR" property="intefaceType" />
+    <result column="deviceType" jdbcType="CHAR" property="deviceType" />
+    <result column="deviceNo" jdbcType="VARCHAR" property="deviceNo" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="isUserAuth" jdbcType="CHAR" property="isUserAuth" />
+    <result column="isBindCredit" jdbcType="CHAR" property="isBindCredit" />
+    <result column="isBindCard" jdbcType="CHAR" property="isBindCard" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="expireTime" jdbcType="INTEGER" property="expireTime" />
+    <result column="lastLoginTime" jdbcType="INTEGER" property="lastLoginTime" />
+    <result column="addTime" jdbcType="INTEGER" property="addTime" />
+    <result column="updateTime" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userId, intefaceType, deviceType, deviceNo, token, isUserAuth, isBindCredit, 
+    isBindCard, ip, expireTime, lastLoginTime, addTime, updateTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_token_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_token_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jieandata.dal.model.UserTokenInfoDo">
+    insert into user_token_info (id, userId, intefaceType, 
+      deviceType, deviceNo, token, 
+      isUserAuth, isBindCredit, isBindCard, 
+      ip, expireTime, lastLoginTime, 
+      addTime, updateTime)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{intefaceType,jdbcType=VARCHAR}, 
+      #{deviceType,jdbcType=CHAR}, #{deviceNo,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR}, 
+      #{isUserAuth,jdbcType=CHAR}, #{isBindCredit,jdbcType=CHAR}, #{isBindCard,jdbcType=CHAR}, 
+      #{ip,jdbcType=VARCHAR}, #{expireTime,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=INTEGER}, 
+      #{addTime,jdbcType=INTEGER}, #{updateTime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jieandata.dal.model.UserTokenInfoDo">
+    insert into user_token_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        userId,
+      </if>
+      <if test="intefaceType != null">
+        intefaceType,
+      </if>
+      <if test="deviceType != null">
+        deviceType,
+      </if>
+      <if test="deviceNo != null">
+        deviceNo,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="isUserAuth != null">
+        isUserAuth,
+      </if>
+      <if test="isBindCredit != null">
+        isBindCredit,
+      </if>
+      <if test="isBindCard != null">
+        isBindCard,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="expireTime != null">
+        expireTime,
+      </if>
+      <if test="lastLoginTime != null">
+        lastLoginTime,
+      </if>
+      <if test="addTime != null">
+        addTime,
+      </if>
+      <if test="updateTime != null">
+        updateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="intefaceType != null">
+        #{intefaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=CHAR},
+      </if>
+      <if test="deviceNo != null">
+        #{deviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="isUserAuth != null">
+        #{isUserAuth,jdbcType=CHAR},
+      </if>
+      <if test="isBindCredit != null">
+        #{isBindCredit,jdbcType=CHAR},
+      </if>
+      <if test="isBindCard != null">
+        #{isBindCard,jdbcType=CHAR},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jieandata.dal.model.UserTokenInfoDo">
+    update user_token_info
+    <set>
+      <if test="userId != null">
+        userId = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="intefaceType != null">
+        intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null">
+        deviceType = #{deviceType,jdbcType=CHAR},
+      </if>
+      <if test="deviceNo != null">
+        deviceNo = #{deviceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="isUserAuth != null">
+        isUserAuth = #{isUserAuth,jdbcType=CHAR},
+      </if>
+      <if test="isBindCredit != null">
+        isBindCredit = #{isBindCredit,jdbcType=CHAR},
+      </if>
+      <if test="isBindCard != null">
+        isBindCard = #{isBindCard,jdbcType=CHAR},
+      </if>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="expireTime != null">
+        expireTime = #{expireTime,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTime != null">
+        lastLoginTime = #{lastLoginTime,jdbcType=INTEGER},
+      </if>
+      <if test="addTime != null">
+        addTime = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        updateTime = #{updateTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jieandata.dal.model.UserTokenInfoDo">
+    update user_token_info
+    set userId = #{userId,jdbcType=INTEGER},
+      intefaceType = #{intefaceType,jdbcType=VARCHAR},
+      deviceType = #{deviceType,jdbcType=CHAR},
+      deviceNo = #{deviceNo,jdbcType=VARCHAR},
+      token = #{token,jdbcType=VARCHAR},
+      isUserAuth = #{isUserAuth,jdbcType=CHAR},
+      isBindCredit = #{isBindCredit,jdbcType=CHAR},
+      isBindCard = #{isBindCard,jdbcType=CHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      expireTime = #{expireTime,jdbcType=INTEGER},
+      lastLoginTime = #{lastLoginTime,jdbcType=INTEGER},
+      addTime = #{addTime,jdbcType=INTEGER},
+      updateTime = #{updateTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="getOneByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_token_info
+    where
+    id in
+    (select max(id) from user_token_info where userId = #{userId,jdbcType=INTEGER})
+  </select>
+
+  <select id="getByConditions" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_token_info d
+    <where>
+      <if test="userIds!=null">
+        and d.userId in
+        <foreach item="item" index="index" collection="userIds"
+                 open="(" separator="," close=")">
+          #{item}
+        </foreach>
+      </if>
+    </where>
+    order by id desc
+  </select>
+</mapper>

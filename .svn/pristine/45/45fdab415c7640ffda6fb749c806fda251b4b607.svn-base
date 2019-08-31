@@ -1,0 +1,14 @@
+package com.jieandata.dal.dao.extdao;
+
+import com.jieandata.dal.model.extdo.UserFeedbackExtDo;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+import java.util.Map;
+
+
+public interface UserFeedbackExtMapper {
+    List<UserFeedbackExtDo> getByConditions(Map<String, Object> conditions);
+
+    void deleteIdList(@Param("ids") List<Integer> ids);
+}
